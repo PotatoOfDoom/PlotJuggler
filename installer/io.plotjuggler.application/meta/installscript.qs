@@ -32,6 +32,7 @@ function Component()
 {
     // Removed installer.gainAdminRights() to allow installation without admin rights
     // Set platform-specific default installation directory in user space
+    // Note: Qt Installer Framework handles forward slashes (/) on all platforms
     if (systemInfo.productType === "windows") {
         // Windows: Use AppData/Local
         installer.setValue("TargetDir", installer.value("HomeDir") + "/AppData/Local/PlotJuggler");
@@ -39,7 +40,7 @@ function Component()
         // macOS: Use Applications folder in home directory
         installer.setValue("TargetDir", installer.value("HomeDir") + "/Applications/PlotJuggler");
     } else {
-        // Linux: Use .local/share
+        // Linux and other Unix-like systems: Use XDG-compliant .local/share
         installer.setValue("TargetDir", installer.value("HomeDir") + "/.local/share/PlotJuggler");
     }
     component.loaded.connect(this, this.installerLoaded);
