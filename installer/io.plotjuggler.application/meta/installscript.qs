@@ -31,6 +31,15 @@ var targetDirectoryPage = null;
 function Component()
 {
     component.loaded.connect(this, this.installerLoaded);
+    
+    // Set default installation directory based on admin privileges
+    if (installer.isAdministrator()) {
+        // Running as administrator - install to Program Files
+        installer.setValue("TargetDir", "@ApplicationsDir@/PlotJuggler");
+    } else {
+        // Running as regular user - install to user's AppData
+        installer.setValue("TargetDir", "@LocalAppDataDir@/PlotJuggler");
+    }
 }
 
 Component.prototype.isDefault = function()
