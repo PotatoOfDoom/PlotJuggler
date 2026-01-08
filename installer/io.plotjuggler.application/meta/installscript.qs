@@ -33,7 +33,7 @@ function Component()
     component.loaded.connect(this, this.installerLoaded);
     
     // Set default installation directory based on admin privileges
-    if (installer.isAdministrator()) {
+    if (installer.hasAdminRights()) {
         // Running as administrator - install to Program Files
         installer.setValue("TargetDir", "@ApplicationsDir@/PlotJuggler");
     } else {
