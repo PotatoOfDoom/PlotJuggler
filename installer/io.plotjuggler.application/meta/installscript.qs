@@ -30,7 +30,8 @@ var targetDirectoryPage = null;
 
 function Component()
 {
-    installer.gainAdminRights();
+    // Removed installer.gainAdminRights() to allow installation without admin rights
+    // The installer now defaults to user's AppData/Local directory
     component.loaded.connect(this, this.installerLoaded);
 }
 
