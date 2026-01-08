@@ -38,7 +38,7 @@ function Component()
         installer.setValue("TargetDir", "@ApplicationsDir@/PlotJuggler");
     } else {
         // Running as regular user - install to user's AppData
-        installer.setValue("TargetDir", "@HomeDir@/AppData/Local/PlotJuggler");
+        installer.setValue("TargetDir", "@LocalAppDataDir@/PlotJuggler");
     }
 }
 
